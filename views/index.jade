@@ -1,0 +1,52 @@
+extends layout
+block body
+	#content
+		table.table.table-hover.table-list
+			thead
+				tr
+					th(width="10%")序号
+					th(width="40%")相册URL
+					th(width="25%")文件夹名称
+					th.text-center(width="25%")操作
+			tbody#target-box
+	script#template(type="x-tmpl-mustache")
+		{{#list}}
+		{{#edit}}
+		<tr>
+		<td colspan="4" style="padding:0;border-top:none;">
+		<form id="J_form_{{index}}">
+		<table class="table table-hover" style="margin:0;border:none;">
+		<tr>
+		<td width="10%">{{index}}</td>
+		<td width="40%"><input type="text" value="{{url}}" name="url" required></td>
+		<td width="25%"><input type="text" value="{{dirName}}" name="dirName" required></td>
+		<td width="25%" class="text-center">
+		<p class="operation">
+		{{#save}}
+		<a href="#" class="save" data-index="{{index}}">保存</a>
+		{{/save}}
+		{{^save}}
+		<a href="#" class="add" data-index="{{index}}">添加</a>
+		{{/save}}
+		</p>
+		</td>
+		</tr>
+		</table>
+		</form>
+		</td>
+		</tr>
+		{{/edit}}
+		{{^edit}}
+		<tr>
+		<td width="10%">{{index}}</td>
+		<td width="40%">{{url}}</td>
+		<td width="25%">{{dirName}}</td>
+		<td width="25%" class="text-center">
+		<p class="operation">
+		<a href="#" class="edit" data-index="{{index}}">修改</a>
+		<a href="#" class="del" data-index="{{index}}">删除</a>
+		</p>
+		</td>
+		</tr>
+		{{/edit}}
+		{{/list}}

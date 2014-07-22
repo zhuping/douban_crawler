@@ -1,0 +1,12 @@
+{
+	"name": "douban_photo_crawler",
+	"description": "a crawler for douban photo",
+	"version": "0.0.1",
+	"dependencies": {
+		"express": "3.8.0",
+		"jade": "*",
+		"cheerio": "*",
+		"request": "*",
+		"body-parser": "*"
+	}
+}
