@@ -46,8 +46,11 @@ Douban.prototype.getPhotos = function(url) {
 			$ = cheerio.load(body);
 			$('.photo_wrap img').each(function() {
 				var imgUrl = $(this).attr('src').replace('thumb', 'photo');
-				var filename = 'download/' + dir + '/' + path.basename(imgUrl);
-				request(imgUrl).pipe(fs.createWriteStream(filename));
+				var filename = path.basename(imgUrl);
+				var filepath = 'download/' + dir + '/' + filename;
+				request(imgUrl).pipe(fs.createWriteStream(filepath).on('error', function(error) {
+					console.log(error);
+				}));
 			});
 
 			// 检查是否有下一页
